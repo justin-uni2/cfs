@@ -1,0 +1,45 @@
+<!--
+  join.html
+  Here, a student can enter a given code to join a session.
+  Check if the code exists in the database
+  If not give error.
+  Otherwise send to student.html?session=THECODE.
+
+  Author: Justin
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Join - CFS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <!-- Imports: -->
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="css/main.css"/>
+
+  <!-- Student stylesheet -->
+  <link rel="stylesheet" href="css/join.css"/>
+
+  <!-- Student javascript -->
+  <script src="js/join.js" defer></script>
+</head>
+
+<body>
+  <div class="join-container">
+    <h1>PIN-Eingabe</h1>
+    <p>Melden Sie sich an per QR-Code oder PIN.</p>
+    <input
+        type="text"
+        id="sessionCode"
+        placeholder="e.g. ABC123"
+        autofocus
+    />
+    <button id="joinBtn">Los!</button>
+  </div>
+
+</body>
+</html>
