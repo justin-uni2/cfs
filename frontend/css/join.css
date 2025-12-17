@@ -1,0 +1,42 @@
+/*
+join.css
+This stylesheet is implemented in the join.html
+
+Author: Justin
+*/
+
+/* Minimal inline styles für schnellen Start */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.join-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+input {
+    width: 200px;
+    padding: 0.8rem;
+    margin: 1rem auto;
+    font-size: 1rem;
+    display: block;
+}
+
+
+button {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
