@@ -1,0 +1,12 @@
+/*
+main.css
+This stylesheet is implemented in every html page of this project.
+
+Author: Justin
+*/
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    background: #f0f0f0;
+}
