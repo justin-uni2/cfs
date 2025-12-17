@@ -6,3 +6,4 @@ Course Feedback System. Initial software prototype.
 ### Logbook
 - 2025-12-17:
     - Init Repo
+    - Setup file structure
