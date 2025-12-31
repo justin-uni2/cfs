@@ -117,6 +117,21 @@ h2 {
   cursor: pointer;
 }
 
+.fast-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.fast-btn {
+  padding: 2rem 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
 /* Kahoot-Colors */
 .btn-red {
   background: #e21b3c;

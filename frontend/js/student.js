@@ -56,8 +56,27 @@ function starOverlay() {
 }
 
 function fastFeedbackOverlay() {
-    
+    overlayInner.innerHTML = `
+    <h1>Fast-Feedback</h1>
+    <div class="fast-grid">
+    <button class="fast-btn btn-red">zu schnell</button>
+    <button class="fast-btn btn-red">zu langsam</button>
+    <button class="fast-btn btn-red">Mikro zu laut</button>
+    <button class="fast-btn btn-red">Mikro zu leise</button>
+    <button class="fast-btn btn-red">Atmosphäre zu laut</button>
+    <button class="fast-btn btn-red">Falsche Folie</button>
+    <button class="fast-btn btn-red">Bitte letzten Gedanken Wiederholen</button>
+    <button class="fast-btn btn-red">Verbindung schlecht</button>
+    </div>
+`;
+
+    document.querySelectorAll(".fast-btn").forEach(btn => {
+            btn.addEventListener("click", () =>
+            fastFeedbackSent());
+    });
 }
+
+
 
 function quizOverlay(quizAvaiable) {
 
@@ -92,6 +111,26 @@ function quizOverlay(quizAvaiable) {
 
 function afterFeedbackOverlay() {
     
+}
+
+// helper functions
+
+function fastFeedbackSent() {
+    overlayInner.innerHTML = `
+    <h1>Fast-Feedback</h1>
+    <div class="fast-grid">
+    <button class="fast-btn btn-red">zu schnell</button>
+    <button class="fast-btn btn-red">zu langsam</button>
+    <button class="fast-btn btn-red">Mikro zu laut</button>
+    <button class="fast-btn btn-red">Mikro zu leise</button>
+    <button class="fast-btn btn-red">Atmosphäre zu laut</button>
+    <button class="fast-btn btn-red">Falsche Folie</button>
+    <button class="fast-btn btn-red">Bitte letzten Gedanken Wiederholen</button>
+    <button class="fast-btn btn-red">Verbindung schlecht</button>
+    </div>
+
+    <h2>Feedback gesendet!</h2>
+`;
 }
 
 
