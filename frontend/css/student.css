@@ -148,3 +148,59 @@ h2 {
 .btn-green {
   background: #26890c;
 }
+
+
+/* After session feedback*/
+.feedback-textarea {
+  width: 100%;
+  margin: 1rem 0;
+  padding: 0.8rem;
+  font-size: 1rem;
+  resize: vertical;
+  border-radius: 8px;
+}
+
+.feedback-type {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.type-btn {
+  flex: 1;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  cursor: pointer;
+  background: white;
+}
+
+.type-btn.active {
+  border-color: #2a7cff;
+  background: #eaf1ff;
+  font-weight: bold;
+}
+
+.send-btn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  background: #2a7cff;
+  color: white;
+  cursor: pointer;
+}
+
+.confirmation {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: #e6ffe6;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}

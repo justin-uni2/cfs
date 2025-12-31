@@ -110,7 +110,50 @@ function quizOverlay(quizAvaiable) {
 }
 
 function afterFeedbackOverlay() {
+     overlayInner.innerHTML = `
+        <h1>After-Session Feedback</h1>
+        <h3>Trage in das Feld eine Nachricht für die Vorlesungsleitung ein.</h3>
     
+        <textarea
+        id="afterFeedbackText"
+        placeholder="Dein Feedback..."
+        rows="5"
+        class="feedback-textarea"
+        ></textarea>
+
+        <div class="feedback-type">
+        <button class="type-btn" data-type="lob">Lob</button>
+        <button class="type-btn" data-type="kritik">Kritik</button>
+        </div>
+
+        <button id="sendFeedbackBtn" class="send-btn">Feedback senden</button>
+
+        <div id="feedbackConfirmation" class="confirmation hidden">Feedback gesendet. Vielen Dank!</div>
+    `;
+
+    let selectedType = null;
+
+    // type selection (Lob / Kritik)
+    document.querySelectorAll(".type-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+        document.querySelectorAll(".type-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedType = btn.dataset.type;
+        });
+    });
+
+    // Send Feedback
+    document.getElementById("sendFeedbackBtn").addEventListener("click", () => {
+        const text = document.getElementById("afterFeedbackText").value.trim();
+
+        if (!text || !selectedType) {
+        alert("Bitte Text eingeben und Lob oder Kritik auswählen.");
+        return;
+        };
+
+        // Show feedback confirmation
+        document.getElementById("feedbackConfirmation").classList.remove("hidden");
+    });
 }
 
 // helper functions
