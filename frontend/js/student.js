@@ -20,20 +20,16 @@ document.querySelectorAll(".bottom-bar button").forEach(button => {
     const func = button.dataset.function;
     switch (func) {
         case "star":
-            overlayInner.innerHTML =    "<h2>Sterne Bewertung</h2>" +
-                                        "<p>Inhalt:</p>";
+            starOverlay();
             break;
         case "fast-feedback":
-            overlayInner.innerHTML =    "<h2>Fast Feedback</h2>" +
-                                        "<p>Inhalt:</p>";
+            fastFeedbackOverlay();
             break;
         case "quiz":
-            overlayInner.innerHTML =    "<h2>Quiz</h2>" +
-                                        "<p>Inhalt:</p>";
+            quizOverlay(true);
             break;
         case "after-feedback":
-            overlayInner.innerHTML =    "<h2>After-Session Feedback</h2>" +
-                                        "<p>Inhalt:</p>";
+            afterFeedbackOverlay();
             break;
         default:
             break;
@@ -52,6 +48,74 @@ document.querySelectorAll(".bottom-bar button").forEach(button => {
     });
     });
 });
+
+
+// functions for different overlays
+function starOverlay() {
+
+}
+
+function fastFeedbackOverlay() {
+    
+}
+
+function quizOverlay(quizAvaiable) {
+
+    if (!(quizAvaiable)) {
+        noQuizAvailable(false);
+    }
+    else {
+
+        const quiz = {
+        question: "Wie verständlich war die heutige Vorlesung?",
+        answers: ["Sehr gut", "Gut", "Okay", "Schlecht"]
+        };
+
+        overlayInner.innerHTML = `
+            <h1>Quiz</h1>
+            <h3>${quiz.question}</h3>
+            <div class="quiz-grid">
+            <button class="quiz-btn btn-red">${quiz.answers[0]}</button>
+            <button class="quiz-btn btn-blue">${quiz.answers[1]}</button>
+            <button class="quiz-btn btn-yellow">${quiz.answers[2]}</button>
+            <button class="quiz-btn btn-green">${quiz.answers[3]}</button>
+            </div>
+        `;
+
+        // activate quiz buttons
+        document.querySelectorAll(".quiz-btn").forEach(btn => {
+            btn.addEventListener("click", () =>
+            noQuizAvailable(true));
+        });
+    }
+}
+
+function afterFeedbackOverlay() {
+    
+}
+
+
+function noQuizAvailable (answered){
+    if (answered) {
+        overlayInner.innerHTML = `
+            <h1>Quiz</h1>
+            <h3>Aktuell keine Frage vorhanden.</h3>
+
+
+            <h2> Antwort gesendet </h2>
+        `;
+
+    } else {
+
+    
+    overlayInner.innerHTML = `
+            <h1>Quiz</h1>
+            <h3>Aktuell keine Frage vorhanden.</h3>
+        `;
+    }
+}
+
+
 
 document.getElementById("closeOverlay").addEventListener("click", () => {
     overlay.style.display = "none";

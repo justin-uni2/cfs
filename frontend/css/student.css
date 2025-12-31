@@ -89,3 +89,47 @@ Author: Justin
   font-size: 0.75rem;
   margin-top: 0.2rem;
 }
+
+
+/* CSS for Quiz overlay */
+h2 {
+  text-align: center;
+}
+
+.quiz-question {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.quiz-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.quiz-btn {
+  padding: 2rem 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* Kahoot-Colors */
+.btn-red {
+  background: #e21b3c;
+}
+
+.btn-blue {
+  background: #1368ce;
+}
+
+.btn-yellow {
+  background: #ffa602;
+}
+
+.btn-green {
+  background: #26890c;
+}
