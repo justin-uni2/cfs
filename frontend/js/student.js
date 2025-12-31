@@ -52,12 +52,66 @@ document.querySelectorAll(".bottom-bar button").forEach(button => {
 
 // functions for different overlays
 function starOverlay() {
+  overlayInner.innerHTML = `
+    <h1>Live Bewertung</h1>
+    <h3>Wie bewertest du den aktuellen Stand der heutigen Sitzung?</h3>
 
+    <div class="star-row" id="starRow">
+      <span class="star" data-value="1">☆</span>
+      <span class="star" data-value="2">☆</span>
+      <span class="star" data-value="3">☆</span>
+      <span class="star" data-value="4">☆</span>
+      <span class="star" data-value="5">☆</span>
+    </div>
+
+    <div id="starReasons" class="hidden">
+      <p>Können Sie die Bewertung Begründen?</p>
+
+      <div class="reason-grid">
+        <button class="reason-btn">Gut erklärt</button>
+        <button class="reason-btn">Interessant</button>
+        <button class="reason-btn">Ich kann der Vorlesung nicht folgen.</button>
+        <button class="reason-btn">Unklar</button>
+
+        <button class="reason-btn">Gute Beispiele</button>
+        <button class="reason-btn">Zu wenig Beispiele</button>
+        <button class="reason-btn">Keine Rückfragen möglich</button>
+        <button class="reason-btn">Schreibe ich in das After-Session Feedback.</button>
+      </div>
+    </div>
+
+    <div id="starConfirmation" class="confirmation hidden">
+    Feedback gesendet. Vielen Dank!
+    </div>
+  `;
+
+  let selectedStars = 0;
+
+  // make stars clickable
+  document.querySelectorAll(".star").forEach(star => {
+    star.addEventListener("click", () => {
+      selectedStars = Number(star.dataset.value);
+      updateStars(selectedStars);
+      showReasons(true);
+      document.getElementById("starReasons").classList.remove("hidden");
+      document.getElementById("starConfirmation").classList.add("hidden");
+    });
+  });
+
+  // make reasons clickable
+  document.querySelectorAll(".reason-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      showReasons(false);
+      document.getElementById("starConfirmation").classList.remove("hidden");
+    });
+  });
 }
+
+
 
 function fastFeedbackOverlay() {
     overlayInner.innerHTML = `
-    <h1>Fast-Feedback</h1>
+    <h1>Fast Feedback</h1>
     <div class="fast-grid">
     <button class="fast-btn btn-red">zu schnell</button>
     <button class="fast-btn btn-red">zu langsam</button>
@@ -158,6 +212,28 @@ function afterFeedbackOverlay() {
 
 // helper functions
 
+// star:
+function updateStars(value) {
+  document.querySelectorAll(".star").forEach(star => {
+    const starValue = Number(star.dataset.value);
+    star.textContent = starValue <= value ? "★" : "☆";
+    star.classList.toggle("active", starValue <= value);
+  });
+}
+
+function showReasons(makeVisible) {
+    if (makeVisible) {
+        document.querySelectorAll(".reason-btn").forEach(btn => {
+            btn.classList.remove("hidden");
+        });
+    } else {
+        document.querySelectorAll(".reason-btn").forEach(btn => {
+            btn.classList.add("hidden");
+        });
+    } 
+}
+
+// fast-feedback:
 function fastFeedbackSent() {
     overlayInner.innerHTML = `
     <h1>Fast-Feedback</h1>
