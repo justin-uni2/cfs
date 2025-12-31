@@ -11,6 +11,51 @@ const overlayInner = document.getElementById("overlayInner");
 const bottomBar = document.getElementById("bottomBar");
 
 
+// general background
+initSessionInfo();
+
+function initSessionInfo() {
+  const params = new URLSearchParams(window.location.search);
+
+  const session = params.get("session");
+  const status = params.get("status"); // "waiting" | "live"
+  const startTime = params.get("start");
+
+  // Implement Session-Code
+  if (session) {
+    document.getElementById("sessionCode").innerText = session;
+  }
+
+  const statusDiv = document.getElementById("sessionStatus");
+  const bottomBar = document.getElementById("bottomBar");
+
+  if (status === "waiting") {
+    statusDiv.classList.add("waiting");
+    statusDiv.innerHTML = `
+      Die Session hat noch nicht begonnen.<br>
+      Start heute um <strong>${startTime || "?"}</strong>.
+    `;
+
+    // Only show after-session feedback
+    bottomBar.querySelectorAll("button").forEach(btn => {
+      if (btn.dataset.function !== "after-feedback") {
+        btn.style.display = "none";
+      }
+    });
+
+  } else if (status === "live") {
+    statusDiv.classList.add("live");
+    statusDiv.innerHTML = `
+      Die Session läuft gerade.<br>
+      Du kannst jetzt Feedback geben.
+    `;
+
+  } 
+}
+
+
+
+// Overlay selection
 document.querySelectorAll(".bottom-bar button").forEach(button => {
     button.addEventListener("click", () => {
     overlay.style.display = "block";

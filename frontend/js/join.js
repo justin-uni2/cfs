@@ -20,5 +20,5 @@ function joinSession() {
 
 
     // Redirect to student view with session code
-    window.location.href = "student.html?session=" + code;
+    window.location.href = "student.html?session=" + code + "&status=waiting&start=10:15";
 }
