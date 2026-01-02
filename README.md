@@ -13,3 +13,8 @@ Course Feedback System. Initial software prototype.
     - Added the initial versions of the 4 overlays for live-Bewertung, fast-feedback, quiz and after-session feedback
     - Added background with session name / id.
     - Added logic to only display after session feedback if the session did not start yet.
+
+-2026-01-02:
+    - Added log-in page for the lecturer
+    - Added list with available lectures 
+    - Added table with sessions 
