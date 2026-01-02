@@ -18,11 +18,11 @@ body {
 .join-container {
     background: white;
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: 6px;
     width: 100%;
     max-width: 400px;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);*/
 }
 
 input {
@@ -31,12 +31,16 @@ input {
     margin: 1rem auto;
     font-size: 1rem;
     display: block;
+    border-radius: 6px;
 }
 
 
 button {
+    background-color: #67b4c8;
     width: 100%;
     padding: 0.8rem;
     font-size: 1rem;
     cursor: pointer;
+    border-radius: 6px;
+    color: white;
 }

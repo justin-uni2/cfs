@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vorlesungsübersicht</title>
+    <link rel="stylesheet" href="css/lecturer.css">
+</head>
+<body>
+
+    <div id="page-list">
+        <h1>Verfügbare Vorlesungen:</h1>
+        
+        <div class="lecture-item">
+            <!--hier fehlt noch Uhrzeit der Vorlesungen-->
+            <span class="lecture-link" onclick="showDetails('Mensch-Computer-Interaktion')">
+                Mensch-Computer-Interaktion
+            </span>
+        </div>
+
+        <div class="lecture-item">
+            <span class="lecture-link" onclick="showDetails('Programmieren 1', 'Einführung in Java und objektorientierte Programmierung.')">
+                Programmieren 1
+            </span>
+        </div>
+
+        <div class="lecture-item">
+            <span class="lecture-link" onclick="showDetails('Datenbanksysteme', 'Design und Abfrage von relationalen Datenbanken mit SQL.')">
+                Datenbanksysteme
+            </span>
+        </div>
+        <button onclick="addLecture()" type="button" class="btn-one" id="loginBtn">+ Vorlesung hinzufügen</button>
+    </div>
+    <!-- hier wird die Tabelle implementiert
+     TODO: alles was nach dem anklicken der verschiedenen Sessions passiert-->
+    <div id="page-details" style="display: none;">
+        <button onclick="showList()" type="button" class="btn-two">← Zurück</button>
+        <h1 id="detail-title">Name</h1>
+    
+        <div class="session-container">
+            <div class="session-column">
+                <h2>Geplante Sessions</h2>
+                <ul id="upcoming-sessions"></ul>
+            </div>
+    
+            <div class="session-column">
+                <h2>Vergangene Sessions</h2>
+                <ul id="past-sessions"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/lecturer.js"></script>
+</body>
+</html>
