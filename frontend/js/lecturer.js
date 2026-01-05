@@ -43,8 +43,16 @@ function showList() {
     pageList.style.display = 'block';
 }
 
-// Logik für den Hinzufügen-Button
-function addLecture(name) {
-    alert(name + " wurde hinzugefügt!");
+
+
+// Pop up Fenster öffnen
+function openPopup() {
+  document.getElementById("popup").style.display = "block";
 }
+
+// Pop up Fenster schließen
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+
 

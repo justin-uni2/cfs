@@ -14,22 +14,39 @@
         <div class="lecture-item">
             <!--hier fehlt noch Uhrzeit der Vorlesungen-->
             <span class="lecture-link" onclick="showDetails('Mensch-Computer-Interaktion')">
-                Mensch-Computer-Interaktion
+                <p>Mensch-Computer-Interaktion<br> Mi: 10:00-11:30</p>
             </span>
         </div>
 
         <div class="lecture-item">
             <span class="lecture-link" onclick="showDetails('Programmieren 1', 'Einführung in Java und objektorientierte Programmierung.')">
-                Programmieren 1
+                <p>Programmieren 1<br> Do: 10:00-11:30</p>
             </span>
         </div>
 
         <div class="lecture-item">
             <span class="lecture-link" onclick="showDetails('Datenbanksysteme', 'Design und Abfrage von relationalen Datenbanken mit SQL.')">
-                Datenbanksysteme
+                <p>Datenbanksysteme<br> Mi: 16:00-17:30</p>
             </span>
         </div>
-        <button onclick="addLecture()" type="button" class="btn-one" id="loginBtn">+ Vorlesung hinzufügen</button>
+        <button onclick="openPopup()" class="btn-one" id="addVorlesung">+ Vorlesung hinzufügen</button>
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close" onclick="closePopup()">×</span>
+                <div class = "form">
+                <div class="row">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name">
+                </div>
+                <div class="row">
+                    <label for="uhrzeit">Uhrzeit:</label>
+                    <input type="text" id="uhrzeit">
+                </div>
+                <button onclick="closePopup()" class="btn-three" id="saveVorlesung">Speichern</button>
+                </div>
+            </div>
+        </div>
+
     </div>
     <!-- hier wird die Tabelle implementiert
      TODO: alles was nach dem anklicken der verschiedenen Sessions passiert-->
