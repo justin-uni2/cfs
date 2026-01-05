@@ -1,8 +1,12 @@
 const pageList = document.getElementById('page-list');
 const pageDetails = document.getElementById('page-details');
 const detailTitle = document.getElementById('detail-title');
-const detailDescription = document.getElementById('detail-description');
 const pageEnd = document.getElementById('page-end'); 
+const sessionData = {};
+let currentEditSession = null;
+const pageDashboard = document.getElementById('page-dashboard');
+
+
 
 function showDetails(name) {
     document.getElementById('detail-title').innerText = name;
@@ -34,16 +38,8 @@ function showDetails(name) {
 
     document.getElementById('page-list').style.display = 'none';
     document.getElementById('page-details').style.display = 'block';
-}
 
 
-
-// Zurück zur Liste
-function showList() {
-    pageDetails.style.display = 'none';
-    pageDashboard.style.display = 'none';
-    if(pageEnd) pageEnd.style.display = 'none';
-    pageList.style.display = 'block';
 }
 
 
@@ -84,6 +80,10 @@ function addNewSession() {
         startSession(sessionName);
     };
 
+    bearbeitenButton.onclick = () => {
+        bearbeiteSession(sessionName);
+
+    };
 
     li.appendChild(startButton);
     li.appendChild(bearbeitenButton);
@@ -100,6 +100,102 @@ function startSession(sessionName) {
     
     console.log("Session '" + sessionName + "' gestartet.");
 }
+function renderEditQuestions(sessionName) {
+    const list = document.getElementById("edit-question-list");
+    list.innerHTML = "";
+
+    const questions = sessionData[sessionName].questions;
+
+    if (questions.length === 0) {
+        const li = document.createElement("li");
+        li.innerText = "Noch keine Fragen vorhanden.";
+        list.appendChild(li);
+        return;
+    }
+
+    questions.forEach((q, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${index + 1}. ${q.question}</strong>`;
+
+        const ul = document.createElement("ul");
+        q.answers.forEach(a => {
+            const aLi = document.createElement("li");
+            aLi.innerText = a;
+            ul.appendChild(aLi);
+        });
+
+        li.appendChild(ul);
+        list.appendChild(li);
+    });
+}
+function bearbeiteSession(sessionName) {
+
+    if (!sessionData[sessionName]) {
+        sessionData[sessionName] = {
+            name: sessionName,
+            questions: []
+        };
+    }
+
+    currentEditSession = sessionName;
+
+    document.getElementById("edit-session").style.display = "block";
+    document.getElementById("edit-session-name").value = sessionName;
+
+    renderEditQuestions(sessionName);
+}
+function saveSessionName() {
+    const newName = document.getElementById("edit-session-name").value.trim();
+    if (!newName || newName === currentEditSession) return;
+
+    sessionData[newName] = sessionData[currentEditSession];
+    sessionData[newName].name = newName;
+    delete sessionData[currentEditSession];
+
+    currentEditSession = newName;
+
+    alert("Sessionname geändert!");
+}
+function addQuestion() {
+    if (!currentEditSession) return;
+
+    const questionText = document.getElementById("question-text").value.trim();
+    const answerInputs = document.querySelectorAll(".answer-input");
+
+    if (!questionText) {
+        alert("Bitte eine Frage eingeben!");
+        return;
+    }
+
+    const answers = [];
+    for (let input of answerInputs) {
+        if (!input.value.trim()) {
+            alert("Bitte alle 4 Antworten ausfüllen!");
+            return;
+        }
+        answers.push(input.value.trim());
+    }
+
+    sessionData[currentEditSession].questions.push({
+        question: questionText,
+        answers: answers
+    });
+
+    // Felder leeren
+    document.getElementById("question-text").value = "";
+    answerInputs.forEach(i => i.value = "");
+
+    renderEditQuestions(currentEditSession);
+}
+
+
+function closeEdit() {
+    document.getElementById("edit-session").style.display = "none";
+    document.getElementById("edit-question-list").innerHTML = "";
+}
+
+
+
 
 //const pageEnd = document.getElementById('page-end');
 
