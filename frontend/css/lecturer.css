@@ -100,6 +100,7 @@ body {
     font-size: 15px;
 }
 
+<<<<<<< HEAD
 .btn-three {
     width: 30%;
     padding: 10px;
@@ -162,3 +163,9 @@ input {
   padding: 6px;
   box-sizing: border-box;
 }
+=======
+.session-column button {
+    width: 100%;
+    margin-top: 15px;
+}
+>>>>>>> c5ebf358e5bd2f730611d765d592c1550c706100

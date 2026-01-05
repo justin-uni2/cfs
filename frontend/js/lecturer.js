@@ -50,9 +50,27 @@ function openPopup() {
   document.getElementById("popup").style.display = "block";
 }
 
+<<<<<<< HEAD
 // Pop up Fenster schließen
 function closePopup() {
   document.getElementById("popup").style.display = "none";
 }
 
 
+=======
+function addNewSession() {
+    const sessionName = prompt("Name der neuen Session:");
+    
+    if (sessionName) {
+        const upcomingList = document.getElementById('upcoming-sessions');
+        
+        const li = document.createElement("li");
+        li.innerText = sessionName;
+        li.onclick = () => alert("Session gewählt: " + sessionName);
+        
+        upcomingList.appendChild(li);
+        console.log("Session '" + sessionName + "' wurde hinzugefügt.");
+    }
+}
+
+>>>>>>> c5ebf358e5bd2f730611d765d592c1550c706100
