@@ -2,6 +2,7 @@ const pageList = document.getElementById('page-list');
 const pageDetails = document.getElementById('page-details');
 const detailTitle = document.getElementById('detail-title');
 const detailDescription = document.getElementById('detail-description');
+const pageEnd = document.getElementById('page-end'); 
 
 function showDetails(name) {
     document.getElementById('detail-title').innerText = name;
@@ -40,6 +41,8 @@ function showDetails(name) {
 // Zurück zur Liste
 function showList() {
     pageDetails.style.display = 'none';
+    pageDashboard.style.display = 'none';
+    if(pageEnd) pageEnd.style.display = 'none';
     pageList.style.display = 'block';
 }
 
@@ -90,15 +93,45 @@ function startSession(sessionName) {
     document.getElementById("page-details").style.display = "none";
     document.getElementById("page-dashboard").style.display = "block";
     document.getElementById("dashboard-title").textContent = sessionName;
+
+    // Initialisierung der Live-Werte (Wizard-of-Oz Simulation)
+    document.getElementById("participants").innerText = "49";
+    document.getElementById("duration").innerText = "00:02:15";
+    
+    console.log("Session '" + sessionName + "' gestartet.");
 }
+
+//const pageEnd = document.getElementById('page-end');
+
+function endSession() {
+    if (confirm("Möchten Sie die Session wirklich beenden?")) {
+        pageDashboard.style.display = "none";
+        pageEnd.style.display = "block";
+        console.log("Session wurde erfolgreich beendet.");
+    }
+}
+
 function backToSessions() {
     document.getElementById("page-dashboard").style.display = "none";
     document.getElementById("page-details").style.display = "block";
 }
 
+function addFeedbackToTicker(text) {
+    const tickerUl = document.querySelector("#feedback-ticker ul");
+    if (!tickerUl) return;
+    
+    const li = document.createElement("li");
+    const now = new Date();
+    const time = now.getHours() + ":" + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
+    
+    li.innerText = `"${text}" (${time})`;
+    tickerUl.prepend(li); // Neues Feedback erscheint oben
+}
 
 // Zurück zur Listenübersicht
 function showList() {
     document.getElementById("page-details").style.display = "none";
+    document.getElementById("page-dashboard").style.display = 'none';
+    document.getElementById("page-end").style.display = 'none';
     document.getElementById("page-list").style.display = "block";
 }

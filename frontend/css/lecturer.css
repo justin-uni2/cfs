@@ -178,3 +178,105 @@ input {
     width: 100%;
     margin-top: 15px;
 }
+
+
+/* --- Dashboard Layout --- */
+
+/* Erstellt das Zwei-Spalten-Layout für das Dashboard */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Zwei gleich breite Spalten */
+    gap: 15px;                      /* Abstand zwischen den Karten */
+    margin-top: 20px;
+}
+
+/* Styling für die einzelnen Info-Karten im Dashboard */
+.dashboard-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    text-align: center;
+    color: #333;
+}
+
+/* Spezifisches Styling für den Live-Feedback-Ticker */
+.ticker-box {
+    height: 120px;         /* Feste Höhe mit Scrollbalken */
+    overflow-y: auto;      /* Ermöglicht Scrollen bei viel Feedback */
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    text-align: left;
+    padding: 8px;
+    margin-top: 10px;
+}
+
+.ticker-box ul {
+    list-style: none;      /* Entfernt Aufzählungspunkte */
+    padding: 0;
+    margin: 0;
+}
+
+.ticker-box li {
+    padding: 6px;
+    border-bottom: 1px solid #eee; /* Trennlinie zwischen Feedback-Einträgen */
+    font-size: 12px;
+    color: #555;
+}
+
+/* Anpassung für die Buttons innerhalb der Session-Spalten */
+.session-column button {
+    width: 100%;           /* Buttons nehmen die volle Breite der grauen Spalte ein */
+    margin-top: 10px;
+}
+
+/* Dashboard Überschriften */
+.dashboard-card h3 {
+    margin-top: 0;
+    font-size: 16px;
+    color: #67b4c8;        /* Dein primärer Blauton */
+}
+
+/* Zentriert den gesamten Ende-Screen Container */
+#page-end {
+    display: none; /* Wird erst per JS eingeblendet */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Spezifisches Styling für die Erfolgsmeldung */
+#page-end h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+/* Große Anzeige für das finale Sterne-Rating */
+.final-rating-display {
+    font-size: 32px;
+    color: gold;
+    margin: 15px 0;
+}
+
+/* Container für die Aktions-Buttons am Ende */
+.end-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Stellt sicher, dass die Buttons auf dem Ende-Screen eine feste Breite haben */
+#page-end .btn-two {
+    max-width: 180px;
+}
+
+#page-end {
+    width: 100%;
+    padding: 20px;
+    /* Stellt sicher, dass es über die gesamte Breite zentriert wird */
+    display: none; 
+}
