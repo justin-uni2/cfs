@@ -50,27 +50,55 @@ function openPopup() {
   document.getElementById("popup").style.display = "block";
 }
 
-<<<<<<< HEAD
 // Pop up Fenster schließen
 function closePopup() {
   document.getElementById("popup").style.display = "none";
 }
 
 
-=======
 function addNewSession() {
     const sessionName = prompt("Name der neuen Session:");
-    
-    if (sessionName) {
-        const upcomingList = document.getElementById('upcoming-sessions');
-        
-        const li = document.createElement("li");
-        li.innerText = sessionName;
-        li.onclick = () => alert("Session gewählt: " + sessionName);
-        
-        upcomingList.appendChild(li);
-        console.log("Session '" + sessionName + "' wurde hinzugefügt.");
-    }
+    if (!sessionName) return;
+
+    const ul = document.getElementById("upcoming-sessions");
+    const li = document.createElement("li");
+    li.textContent = sessionName;
+
+    // Start Session Button erstellen
+    const startButton = document.createElement("button");
+    startButton.className = "btn-four";
+    startButton.textContent = "Start Session";
+    startButton.style.marginLeft = "5px";
+
+    // Bearbeiten Button
+    const bearbeitenButton = document.createElement("button");
+    bearbeitenButton.className = "btn-four";
+    bearbeitenButton.textContent = "Bearbeiten";
+    bearbeitenButton.style.marginLeft = "5px";
+
+    // Klick-Event: Dashboard anzeigen
+    startButton.onclick = () => {
+        startSession(sessionName);
+    };
+
+
+    li.appendChild(startButton);
+    li.appendChild(bearbeitenButton);
+    ul.appendChild(li);
+}
+function startSession(sessionName) {
+    document.getElementById("page-details").style.display = "none";
+    document.getElementById("page-dashboard").style.display = "block";
+    document.getElementById("dashboard-title").textContent = sessionName;
+}
+function backToSessions() {
+    document.getElementById("page-dashboard").style.display = "none";
+    document.getElementById("page-details").style.display = "block";
 }
 
->>>>>>> c5ebf358e5bd2f730611d765d592c1550c706100
+
+// Zurück zur Listenübersicht
+function showList() {
+    document.getElementById("page-details").style.display = "none";
+    document.getElementById("page-list").style.display = "block";
+}
