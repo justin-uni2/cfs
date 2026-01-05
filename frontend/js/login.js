@@ -8,7 +8,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     //hier nur gehartcodet, reicht aber vielleicht so zur präsentation 
     if (userField === "admin" && passField === "secret") {
         alert("Login erfolgreich!");
-        window.location.href = "teacher.html"; 
+        window.location.href = "lecturer.html"; 
     } else {
         errorMsg.textContent = "Invalid username or password.";
         errorMsg.classList.remove('hidden');

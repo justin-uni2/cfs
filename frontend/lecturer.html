@@ -126,11 +126,44 @@
                 <p>3.9 / 5.0</p>
             </div>
             <div style="display: flex; gap: 10px; justify-content: center;">
-                <button onclick="alert('Protokoll wird generiert...')" class="btn-two" style="width: 150px;">Protokoll</button>
-                <button onclick="showList()" class="btn-two" style="width: 150px;">Startseite</button>
+                <button onclick="showProtocol('Aktuelle Session')" class="btn-two" style="width: 150px;">
+                Protokoll
+            </button>
+            <button onclick="showList()" class="btn-two" style="width: 150px;">
+                Startseite
+            </button>
             </div>
         </div>
     </div>
+
+    <div id="page-protocol" style="display: none; padding: 20px; max-width: 800px; margin: auto;">
+    <button onclick="backToSessionsFromProtocol()" class="btn-two" style="margin-bottom: 20px;">← Zurück zu Sessions</button>
+    <h1 id="protocol-title" style="text-align: center; margin-bottom: 30px;">Protokoll: Einführung MCI</h1>
+
+    <div class="dashboard-grid">
+        <div class="dashboard-card">
+            <h3 style="color: #67b4c8;">Rating-Verlauf</h3>
+            <div style="height: 150px; border-left: 2px solid #333; border-bottom: 2px solid #333; position: relative; margin: 20px auto; width: 80%;">
+                <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <polyline fill="none" stroke="#67b4c8" stroke-width="3" points="0,80 20,70 40,75 60,60 80,65 100,50" />
+                </svg>
+                <p style="font-size: 10px; margin-top: 5px;">Zeitverlauf</p>
+            </div>
+            <p style="font-size: 18px;">Finales Rating: <strong>3.9 ★</strong></p>
+        </div>
+
+        <div class="dashboard-card">
+            <h3 style="color: #67b4c8;">Live-Feedback Verlauf</h3>
+            <div class="ticker-box" style="height: 200px; text-align: left;">
+                <ul style="list-style: none; padding: 0; font-size: 13px;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>10:20:</strong> "Bitte langsamer"</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>10:35:</strong> "Bitte nochmal erklären"</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>10:52:</strong> "Mikro zu leise"</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
     <script src="js/lecturer.js"></script>
 </body>

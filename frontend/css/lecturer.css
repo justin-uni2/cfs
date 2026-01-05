@@ -280,3 +280,17 @@ input {
     /* Stellt sicher, dass es über die gesamte Breite zentriert wird */
     display: none; 
 }
+
+#page-protocol {
+    display: none; /* Standardmäßig aus */
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#page-protocol {
+    display: none; /* Standardmäßig aus */
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}

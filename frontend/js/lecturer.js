@@ -27,7 +27,16 @@ function showDetails(name) {
     sessions.forEach(s => {
         const li = document.createElement("li");
         li.innerText = s.title;
-        li.onclick = () => alert("Session gewählt: " + s.title);
+        li.onclick = () => {
+            if (s.title === "User Research") {
+                startSession(s.title);
+            } else if (s.title === "Einführung MCI") {
+                // NEU: Navigation zum Protokoll
+                showProtocol(s.title);
+            } else {
+                alert("Session gewählt: " + s.title);
+            }
+        };
         
         if (s.type === "upcoming") {
             upcomingList.appendChild(li);
@@ -42,7 +51,17 @@ function showDetails(name) {
 
 }
 
+function showProtocol(sessionName) {
+    document.getElementById('page-details').style.display = "none";
+    document.getElementById('page-end').style.display = "none";
+    document.getElementById('page-protocol').style.display = "block";
+    document.getElementById('protocol-title').innerText = "Protokoll: " + sessionName;
+}
 
+function backToSessionsFromProtocol() {
+    document.getElementById('page-protocol').style.display = "none";
+    document.getElementById('page-details').style.display = "block";
+}
 
 // Pop up Fenster öffnen
 function openPopup() {
@@ -229,5 +248,6 @@ function showList() {
     document.getElementById("page-details").style.display = "none";
     document.getElementById("page-dashboard").style.display = 'none';
     document.getElementById("page-end").style.display = 'none';
+    document.getElementById('page-protocol').style.display = 'none';
     document.getElementById("page-list").style.display = "block";
 }
