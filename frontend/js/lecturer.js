@@ -48,3 +48,18 @@ function addLecture(name) {
     alert(name + " wurde hinzugefügt!");
 }
 
+function addNewSession() {
+    const sessionName = prompt("Name der neuen Session:");
+    
+    if (sessionName) {
+        const upcomingList = document.getElementById('upcoming-sessions');
+        
+        const li = document.createElement("li");
+        li.innerText = sessionName;
+        li.onclick = () => alert("Session gewählt: " + sessionName);
+        
+        upcomingList.appendChild(li);
+        console.log("Session '" + sessionName + "' wurde hinzugefügt.");
+    }
+}
+

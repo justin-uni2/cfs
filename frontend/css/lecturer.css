@@ -99,3 +99,8 @@ body {
     font-weight: bold;
     font-size: 15px;
 }
+
+.session-column button {
+    width: 100%;
+    margin-top: 15px;
+}
