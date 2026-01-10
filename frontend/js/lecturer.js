@@ -108,16 +108,58 @@ function addNewSession() {
     li.appendChild(bearbeitenButton);
     ul.appendChild(li);
 }
-function startSession(sessionName) {
-    document.getElementById("page-details").style.display = "none";
-    document.getElementById("page-dashboard").style.display = "block";
-    document.getElementById("dashboard-title").textContent = sessionName;
 
-    // Initialisierung der Live-Werte (Wizard-of-Oz Simulation)
-    document.getElementById("participants").innerText = "49";
-    document.getElementById("duration").innerText = "00:02:15";
+function saveLectureWithFeedback() {
+    const nameInput = document.getElementById('name');
+    const timeInput = document.getElementById('uhrzeit');
+    const name = nameInput.value.trim();
+    const time = timeInput.value.trim();
+
+    if (!name) {
+        alert("Bitte geben Sie einen Namen ein.");
+        return;
+    }
+
+    // 1. Den Container für die Vorlesungen finden
+    const container = document.getElementById('lecture-container');
     
-    console.log("Session '" + sessionName + "' gestartet.");
+    // 2. Das neue Element erstellen
+    const newLecture = document.createElement("div");
+    newLecture.className = "lecture-item";
+    newLecture.innerHTML = `
+        <span class="lecture-link" onclick="showDetails('${name}')">
+            <p>${name}<br> ${time ? time : 'Zeit n.V.'}</p>
+        </span>
+    `;
+
+    // 3. In den Container einfügen
+    container.appendChild(newLecture);
+
+    // 4. Aufräumen: Felder leeren und Popup zu
+    nameInput.value = "";
+    timeInput.value = "";
+    closePopup();
+
+    // 5. Visuelles Feedback (Toast anzeigen)
+    const toast = document.getElementById("toast-message");
+    if (toast) {
+        toast.className = "toast show";
+        setTimeout(() => { toast.className = "toast"; }, 3000);
+    }
+}
+
+function startSession(sessionName) {
+    if (confirm("Möchten Sie die Session '" + sessionName + "' jetzt wirklich starten?")) {
+        document.getElementById("page-details").style.display = "none";
+        document.getElementById("page-dashboard").style.display = "block";
+        document.getElementById("dashboard-title").textContent = sessionName;
+
+        // Initialisierung der Live-Werte
+        document.getElementById("participants").innerText = "49";
+        document.getElementById("duration").innerText = "00:02:15";
+        
+        console.log("Session '" + sessionName + "' gestartet.");
+    }
 }
 function renderEditQuestions(sessionName) {
     const list = document.getElementById("edit-question-list");

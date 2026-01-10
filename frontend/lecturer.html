@@ -10,16 +10,19 @@
 
     <div id="page-list">
         <h1>Verfügbare Vorlesungen:</h1>
-        <div class="lecture-item">
-            <span class="lecture-link" onclick="showDetails('Mensch-Computer-Interaktion')">
-                <p>Mensch-Computer-Interaktion<br> Mi: 10:00-11:30</p>
-            </span>
+        <div id="lecture-container">
+            <div class="lecture-item">
+                <span class="lecture-link" onclick="showDetails('Mensch-Computer-Interaktion')">
+                    <p>Mensch-Computer-Interaktion<br> Mi: 10:00-11:30</p>
+                </span>
+            </div>
+            <div class="lecture-item">
+                <span class="lecture-link" onclick="showDetails('Programmieren 1')">
+                    <p>Programmieren 1<br> Do: 10:00-11:30</p>
+                </span>
+            </div>
         </div>
-        <div class="lecture-item">
-            <span class="lecture-link" onclick="showDetails('Programmieren 1')">
-                <p>Programmieren 1<br> Do: 10:00-11:30</p>
-            </span>
-        </div>
+
         <button onclick="openPopup()" class="btn-one" id="addVorlesung">+ Vorlesung hinzufügen</button>
 
         <div id="popup" class="popup">
@@ -28,7 +31,7 @@
                 <div class="form">
                     <div class="row"><label>Name:</label><input type="text" id="name"></div>
                     <div class="row"><label>Uhrzeit:</label><input type="text" id="uhrzeit"></div>
-                    <button onclick="closePopup()" class="btn-three">Speichern</button>
+                    <button onclick="saveLectureWithFeedback()" class="btn-three">Speichern</button>
                 </div>
             </div>
         </div>
@@ -111,9 +114,24 @@
             </div>
         </div>
 
+        
+
         <button onclick="endSession()" class="btn-one" style="margin-top: 20px; background-color: #e21b3c;">
             Beende Session
         </button>
+    </div>
+
+    <div id="toast-message" class="toast">Erfolgreich gespeichert!</div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">×</span>
+            <div class="form">
+                <div class="row"><label for="name">Name:</label><input type="text" id="name"></div>
+                <div class="row"><label for="uhrzeit">Uhrzeit:</label><input type="text" id="uhrzeit"></div>
+                <button onclick="saveLectureWithFeedback()" class="btn-three" id="saveVorlesung">Speichern</button>
+            </div>
+        </div>
     </div>
 
     <div id="page-end" style="display: none; text-align: center;">
@@ -164,6 +182,8 @@
         </div>
     </div>
 </div>
+
+
 
     <script src="js/lecturer.js"></script>
 </body>
