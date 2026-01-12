@@ -7,48 +7,37 @@ let currentEditSession = null;
 const pageDashboard = document.getElementById('page-dashboard');
 
 
-
 function showDetails(name) {
     document.getElementById('detail-title').innerText = name;
     
     const upcomingList = document.getElementById('upcoming-sessions');
     const pastList = document.getElementById('past-sessions');
 
-    // Listen leeren
     upcomingList.innerHTML = "";
     pastList.innerHTML = "";
 
-    // Beispiel-Daten (In einer echten App kämen diese aus einer Datenbank)
     const sessions = [
         { title: "Einführung MCI", type: "past" },
         { title: "User Research", type: "upcoming" }
     ];
 
     sessions.forEach(s => {
-        const li = document.createElement("li");
-        li.innerText = s.title;
-        li.onclick = () => {
-            if (s.title === "User Research") {
-                startSession(s.title);
-            } else if (s.title === "Einführung MCI") {
-                // NEU: Navigation zum Protokoll
-                showProtocol(s.title);
-            } else {
-                alert("Session gewählt: " + s.title);
-            }
-        };
-        
         if (s.type === "upcoming") {
+            // Nutzt die neue Funktion für geplante Sessions (mit Buttons)
+            const li = createSessionItem(s.title);
             upcomingList.appendChild(li);
         } else {
+            // Vergangene Sessions behalten das alte Verhalten (Klick führt zum Protokoll)
+            const li = document.createElement("li");
+            li.innerText = s.title;
+            li.className = "clickable-session"; // Optional für CSS
+            li.onclick = () => showProtocol(s.title);
             pastList.appendChild(li);
         }
     });
 
     document.getElementById('page-list').style.display = 'none';
     document.getElementById('page-details').style.display = 'block';
-
-
 }
 
 function showProtocol(sessionName) {
@@ -74,41 +63,17 @@ function closePopup() {
 }
 
 
+
 function addNewSession() {
     const sessionName = prompt("Name der neuen Session:");
     if (!sessionName) return;
 
     const ul = document.getElementById("upcoming-sessions");
-    const li = document.createElement("li");
-    li.textContent = sessionName;
-
-    // Start Session Button erstellen
-    const startButton = document.createElement("button");
-    startButton.className = "btn-four";
-    startButton.textContent = "Start Session";
-    startButton.style.marginLeft = "5px";
-
-    // Bearbeiten Button
-    const bearbeitenButton = document.createElement("button");
-    bearbeitenButton.className = "btn-four";
-    bearbeitenButton.textContent = "Bearbeiten";
-    bearbeitenButton.style.marginLeft = "5px";
-
-    // Klick-Event: Dashboard anzeigen
-    startButton.onclick = () => {
-        startSession(sessionName);
-    };
-
-    bearbeitenButton.onclick = () => {
-        bearbeiteSession(sessionName);
-
-    };
-
-    li.appendChild(startButton);
-    li.appendChild(bearbeitenButton);
+    // Nutzt die gleiche Logik wie oben
+    const li = createSessionItem(sessionName);
+    
     ul.appendChild(li);
 }
-
 function saveLectureWithFeedback() {
     const nameInput = document.getElementById('name');
     const timeInput = document.getElementById('uhrzeit');
@@ -292,4 +257,27 @@ function showList() {
     document.getElementById("page-end").style.display = 'none';
     document.getElementById('page-protocol').style.display = 'none';
     document.getElementById("page-list").style.display = "block";
+}
+
+function createSessionItem(sessionTitle) {
+    const li = document.createElement("li");
+    li.textContent = sessionTitle + " "; // Leerzeichen für Abstand
+
+    // Start Session Button
+    const startButton = document.createElement("button");
+    startButton.className = "btn-four";
+    startButton.textContent = "Start Session";
+    startButton.style.marginLeft = "5px";
+    startButton.onclick = () => startSession(sessionTitle);
+
+    // Bearbeiten Button
+    const bearbeitenButton = document.createElement("button");
+    bearbeitenButton.className = "btn-four";
+    bearbeitenButton.textContent = "Bearbeiten";
+    bearbeitenButton.style.marginLeft = "5px";
+    bearbeitenButton.onclick = () => bearbeiteSession(sessionTitle);
+
+    li.appendChild(startButton);
+    li.appendChild(bearbeitenButton);
+    return li;
 }
