@@ -68,7 +68,8 @@ document.querySelectorAll(".bottom-bar button").forEach(button => {
             starOverlay();
             break;
         case "fast-feedback":
-            fastFeedbackOverlay();
+            initFastFeedback();
+            //fastFeedbackOverlay();
             break;
         case "quiz":
             quizOverlay(true);
@@ -93,7 +94,6 @@ document.querySelectorAll(".bottom-bar button").forEach(button => {
     });
     });
 });
-
 
 // functions for different overlays
 function starOverlay() {
@@ -151,31 +151,6 @@ function starOverlay() {
     });
   });
 }
-
-
-
-function fastFeedbackOverlay() {
-    overlayInner.innerHTML = `
-    <h1>Fast Feedback</h1>
-    <div class="fast-grid">
-    <button class="fast-btn btn-red">zu schnell</button>
-    <button class="fast-btn btn-red">zu langsam</button>
-    <button class="fast-btn btn-red">Mikro zu laut</button>
-    <button class="fast-btn btn-red">Mikro zu leise</button>
-    <button class="fast-btn btn-red">Atmosphäre zu laut</button>
-    <button class="fast-btn btn-red">Falsche Folie</button>
-    <button class="fast-btn btn-red">Bitte letzten Gedanken Wiederholen</button>
-    <button class="fast-btn btn-red">Verbindung schlecht</button>
-    </div>
-`;
-
-    document.querySelectorAll(".fast-btn").forEach(btn => {
-            btn.addEventListener("click", () =>
-            fastFeedbackSent());
-    });
-}
-
-
 
 function quizOverlay(quizAvaiable) {
 
@@ -278,23 +253,36 @@ function showReasons(makeVisible) {
     } 
 }
 
-// fast-feedback:
-function fastFeedbackSent() {
-    overlayInner.innerHTML = `
-    <h1>Fast-Feedback</h1>
-    <div class="fast-grid">
-    <button class="fast-btn btn-red">zu schnell</button>
-    <button class="fast-btn btn-red">zu langsam</button>
-    <button class="fast-btn btn-red">Mikro zu laut</button>
-    <button class="fast-btn btn-red">Mikro zu leise</button>
-    <button class="fast-btn btn-red">Atmosphäre zu laut</button>
-    <button class="fast-btn btn-red">Falsche Folie</button>
-    <button class="fast-btn btn-red">Bitte letzten Gedanken Wiederholen</button>
-    <button class="fast-btn btn-red">Verbindung schlecht</button>
-    </div>
+function initFastFeedback() {
+  overlayInner.innerHTML = `
+      <h1>Fast-Feedback</h1>
+      <div class="fast-grid" id="buttonContainer">
+          <button class="fast-btn btn-red" onclick="triggerFeedback('zu schnell')">zu schnell</button>
+          <button class="fast-btn btn-red" onclick="triggerFeedback('zu langsam')">zu langsam</button>
+          <button class="fast-btn btn-red" onclick="triggerFeedback('Mikro zu laut')">Mikro zu laut</button>
+          <button class="fast-btn btn-red" onclick="triggerFeedback('Mikro zu leise')">Mikro zu leise</button>
+          <button class="fast-btn btn-red" onclick="triggerFeedback('Atmosphäre zu laut')">Atmosphäre zu laut</button>
+          <button class="fast-btn btn-red" onclick="triggerFeedback('Falsche Folie')">Falsche Folie</button>
+          <button class="fast-btn btn-red" onclick="triggerFeedback('Wiederholen')">Bitte letzten Gedanken Wiederholen</button>
+          <button class="fast-btn btn-red" onclick="triggerFeedback('Verbindung schlecht')">Verbindung schlecht</button>
+      </div>
+      <h2 id="feedbackStatus" style="opacity: 0; transition: opacity 0.1s ease-in-out; margin-top: 20px;"></h2>
+  `;
+}
 
-    <h2>Feedback gesendet!</h2>
-`;
+function triggerFeedback(typ) {
+  console.log("Sende Feedback: " + typ); 
+  
+  const status = document.getElementById('feedbackStatus');
+  
+  status.style.transition = 'none'; 
+  status.style.opacity = '0';
+  
+  setTimeout(() => {
+      status.innerText = `Feedback "${typ}" gesendet!`;
+      status.style.transition = 'opacity 0.1s ease-in-out'; 
+      status.style.opacity = '1';
+  }, 50); 
 }
 
 
