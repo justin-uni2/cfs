@@ -5,7 +5,7 @@ const pageEnd = document.getElementById('page-end');
 const sessionData = {};
 let currentEditSession = null;
 const pageDashboard = document.getElementById('page-dashboard');
-
+let quizInterval;
 
 function showDetails(name) {
     document.getElementById('detail-title').innerText = name;
@@ -280,4 +280,41 @@ function createSessionItem(sessionTitle) {
     li.appendChild(startButton);
     li.appendChild(bearbeitenButton);
     return li;
+}
+
+function startQuizTimer() {
+    const initialDiv = document.getElementById('quiz-initial');
+    const runningDiv = document.getElementById('quiz-running');
+    const timerDisplay = document.getElementById('quiz-timer');
+    
+    initialDiv.style.display = 'none';
+    runningDiv.style.display = 'block';
+    
+    let timeLeft = 30;
+    timerDisplay.innerText = timeLeft;
+
+    // Intervall für den 30-Sekunden-Timer
+    quizInterval = setInterval(() => {
+        timeLeft--;
+        timerDisplay.innerText = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(quizInterval);
+            showQuizResults();
+        }
+    }, 1000);
+}
+
+function showQuizResults() {
+    document.getElementById('quiz-running').style.display = 'none';
+    document.getElementById('quiz-results').style.display = 'block';
+    
+    // Heuristik: Sichtbarkeit des Systemstatus 
+    console.log("Quiz beendet, Ergebnisse werden angezeigt.");
+}
+
+function resetQuiz() {
+    document.getElementById('quiz-results').style.display = 'none';
+    document.getElementById('quiz-initial').style.display = 'block';
+    clearInterval(quizInterval);
 }
