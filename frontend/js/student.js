@@ -160,8 +160,8 @@ function quizOverlay(quizAvaiable) {
     else {
 
         const quiz = {
-        question: "Wie verständlich war die heutige Vorlesung?",
-        answers: ["Sehr gut", "Gut", "Okay", "Schlecht"]
+        question: "Was ist MCI?",
+        answers: ["Mensch Computer Interaktion", "Media Control Interface", "Monetary Conditions Index", "Mining Construction International"]
         };
 
         overlayInner.innerHTML = `
